@@ -11,6 +11,7 @@ import android.widget.EditText;
 public class MainActivity extends AppCompatActivity {
     private EditText nombre;
     private Button saludar;
+    private String miNombre;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -18,21 +19,16 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         //referencias objetos
-        nombre=(EditText)findViewById(R.id.etNombre);
-        final String miNombre=nombre.getText().toString();
+        nombre = (EditText) findViewById(R.id.etNombre);
+        miNombre = nombre.getText().toString();
+        saludar = (Button) findViewById(R.id.btSaludar);
 
-        saludar=(Button)findViewById(R.id.btSaludar);
 
-        saludar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //lo que quiera
-                Intent i=new Intent(MainActivity.this,ActivitySaludo.class);
-                i.putExtra("NOMBRE",miNombre);
-                startActivity(i);
+    }
 
-            }
-        });
-
+    public void lanzarActivitySaludo(View v) {
+        Intent i = new Intent(MainActivity.this, ActivitySaludo.class);
+        i.putExtra("NOMBRE", miNombre);
+        startActivity(i);
     }
 }
